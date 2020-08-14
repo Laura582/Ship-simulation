@@ -6,14 +6,21 @@ namespace Ship_simulation
     {
         static void Main(string[] args)
         {
-            Ship ship = new Ship(2);
+            Ship ship = new Ship(2, true, true);
+            ship.GetShipLocation();
             ship.Move(true, false);
-            ship.LocationA();
+            ship.GetShipLocation();
+            ship.LetPeopleIn();
             ship.Move(false, true);
+            ship.GetShipLocation();
             ship.LetPeopleOut();
-            ship.LocationB();
-            
-          
+            ship.LetPeopleIn();
+            ship.Move(true, false);
+            ship.GetShipLocation();
+            ship.LetPeopleOut();
+            ship.Move(false, false);
+            ship.GetShipLocation();
+
         }
     }
 }
