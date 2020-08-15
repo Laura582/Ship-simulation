@@ -7,23 +7,18 @@ namespace Ship_simulation
 {
     public class Ship
     {
-        public bool _locationA;
-        public bool _locationB;
-        public bool _locationC;
-
         public int _maxNumberOfPeople;
         public int _currentNumberOfPeople;
 
-        public bool _captain;
-        private bool _fuel;
+        public string _location;
+        public string _captain;
 
         public List<string> peopleInside = new List<string>();
 
-        public Ship(int maxNumberOfPeople, bool captain, bool fuel)
+        public Ship(string captain, int maxNumberOfPeople)
         {
             _captain = captain;
             _maxNumberOfPeople = maxNumberOfPeople;
-            _fuel = fuel;
         }
 
         public List<string> GetCurrentNumberOfPeople(string[] PeopleArray)
@@ -37,75 +32,42 @@ namespace Ship_simulation
                     peopleInside.Add(PeopleArray[i]);
                     Console.WriteLine(peopleInside[i]);
                 }
-
             }
-
             _currentNumberOfPeople = peopleInside.Count;
 
             return peopleInside;
         }
 
-        public bool GetLocationA()
+        public string GetShipLocation()
         {
-            Console.WriteLine("Ship is in A location");
-            return _locationA;
+            return _location;
         }
-        public bool GetLocationB()
+
+        public void Move(string location)
         {
-            Console.WriteLine("Ship is in B location");
-            return _locationB;
-        }
-        public bool GetLocationC()
-        {
-            Console.WriteLine("Ship is in dock");
-            return _locationC;
-        }
-        public bool GetShipLocation()
-        {
-            if (_locationA == true)
+
+            if (_captain == "captain")
             {
-                return GetLocationA();
-            }
-            else if (_locationB == true)
-            {
-                return GetLocationB();
+                _location = location;
+                Console.WriteLine($"Ship moves to {_location} location");
             }
             else
             {
-                return GetLocationC();
-
+                Console.WriteLine("In order to move you need captain");
             }
         }
 
-        public void Move(bool locationA, bool locationB)
+        public void LetPeopleIn(string[] ArrayOfPeopleA, string[] ArrayOfPeopleB)
         {
-            if (_captain == true && _fuel == true)
+            if (_location == "PointA")
             {
-                _locationA = locationA;
-                _locationB = locationB;
+                GetCurrentNumberOfPeople(ArrayOfPeopleA);
             }
-            else
+            if (_location == "PointB")
             {
-                Console.WriteLine("In order to move you need captain and fuel");
-                
+                GetCurrentNumberOfPeople(ArrayOfPeopleB);
             }
-            
         }
-
-
-        public void LetPeopleIn()
-        {
-            if (_locationA == true)
-            {
-                GetCurrentNumberOfPeople(People.PeoplWhoAreWaitingInADestination);
-            }
-            if (_locationB == true)
-            {
-                GetCurrentNumberOfPeople(People.PeoplWhoAreWaitingInBDestination);
-            }
-
-        }
-
 
         public void LetPeopleOut()
         {
