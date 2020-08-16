@@ -9,14 +9,25 @@ namespace Ship_simulation
     {
         static Random rnd = new Random();
 
-        public string[] _names;
+        public string[] _namesA;
+        public string[] _namesB;
+        public int _capacity;
 
-        public Port (string[] names)
+        public Port(string[] namesA, string[] namesB, int capacity)
         {
-            _names = names;
+            _namesA = namesA;
+            _namesB = namesB;
+            _capacity = capacity;
 
         }
-        public static string[] GetNames(string[] ArrayPeople, int capacity)
-         => ArrayPeople.OrderBy(x => rnd.Next()).Take(capacity).ToArray();
+        public string[] GetNamesPortA()
+        {
+            return _namesA.OrderBy(x => rnd.Next()).Take(_capacity).ToArray();
+        }
+        public string[] GetNamesPortB()
+        {
+            return _namesB.OrderBy(x => rnd.Next()).Take(_capacity).ToArray();
+        }
+
     }
 }

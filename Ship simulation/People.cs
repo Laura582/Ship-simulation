@@ -7,7 +7,7 @@ namespace Ship_simulation
     class People
     {
         public static string[] PeopleWhoAreWaitingInADestination => new[]
-       {
+        {
             "Tom",
             "Katherine",
             "Bill",
@@ -15,10 +15,16 @@ namespace Ship_simulation
         };
 
         public static string[] PeopleWhoAreWaitingInBDestination => new[]
-      {
+        {
             "Gill",
             "Kate",
             "Sun"
+        };
+        public static string[] PeopleWhoAreWaitingInDockDestination => new[]
+        {
+            "Peter",
+            "Kail",
+            "Captain"
         };
     }
 }
