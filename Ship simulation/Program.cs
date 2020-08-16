@@ -26,7 +26,7 @@ namespace Ship_simulation
             for (int i = 0; i < times; i++)
             {
                 ship.LetPeopleOut();
-                ship.LetPeopleIn(People.GetRandomName(capacity), capacity);
+                ship.LetPeopleIn(People.GetRandomName(capacity));
 
                 if (ship.GetShipLocation() == point1)
                 {

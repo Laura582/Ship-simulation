@@ -16,7 +16,6 @@ namespace Ship_simulation
         public bool _wheel;
 
         public List<string> peopleInside = new List<string>();
-
         public Ship(string captain, int maxNumberOfPeople, bool wheel)
         {
             _captain = captain;
@@ -48,14 +47,11 @@ namespace Ship_simulation
 
         public void Move(Point location)
         {
-            
+
             if (_wheel == true)
             {
-                
-                    _location = location;
-                    Console.WriteLine($"Ship moves to {_location} location");
-                
-               
+                _location = location;
+                Console.WriteLine($"Ship moves to {_location} location");
             }
             else
             {
@@ -63,11 +59,10 @@ namespace Ship_simulation
             }
         }
 
-        public void LetPeopleIn(string[] ArrayOfPeople, int capacity)
+        public void LetPeopleIn(string[] ArrayOfPeople)
         {
             Person person = new Person(ArrayOfPeople);
             GetCurrentNumberOfPeople(person.GetName());
-            
         }
 
         public void LetPeopleOut()
