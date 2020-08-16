@@ -20,7 +20,7 @@ namespace Ship_simulation
         }
         public static void ShipSchedule(int times, int capacity)
         {
-            Ship ship = new Ship("captain", capacity);
+            Ship ship = new Ship("Captain", capacity, true);
             ship.Move(point1, People.PeopleWhoAreWaitingInDockDestination);
 
             for (int i = 0; i < times; i++)

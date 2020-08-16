@@ -13,13 +13,15 @@ namespace Ship_simulation
 
         public Point _location;
         public string _captain;
+        public bool _wheel;
 
         public List<string> peopleInside = new List<string>();
 
-        public Ship(string captain, int maxNumberOfPeople)
+        public Ship(string captain, int maxNumberOfPeople, bool wheel)
         {
             _captain = captain;
             _maxNumberOfPeople = maxNumberOfPeople;
+            _wheel = wheel;
         }
 
         public List<string> GetCurrentNumberOfPeople(string[] PeopleArray)
@@ -48,14 +50,21 @@ namespace Ship_simulation
         {
             Dock dock = new Dock(ArrayOfPeopleDock);
             var captainName = dock.GetCaptainName();
-            if (captainName.Contains("Captain"))
+            if (_wheel == true)
             {
-                _location = location;
-                Console.WriteLine($"Ship moves to {_location} location");
+                if (captainName.Contains(_captain))
+                {
+                    _location = location;
+                    Console.WriteLine($"Ship moves to {_location} location");
+                }
+                else
+                {
+                    Console.WriteLine("In order to move you need captain");
+                }
             }
             else
             {
-                Console.WriteLine("In order to move you need captain");
+                Console.WriteLine("In order to move you need wheel");
             }
         }
 
