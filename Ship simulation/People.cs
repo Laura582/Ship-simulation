@@ -1,30 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Ship_simulation
 {
     class People
     {
-        public static string[] PeopleWhoAreWaitingInADestination => new[]
+        static Random rnd = new Random();
+
+        public static string[] PeopleArray => new[]
         {
             "Tom",
             "Katherine",
             "Bill",
-            "Catie"
-        };
-
-        public static string[] PeopleWhoAreWaitingInBDestination => new[]
-        {
+            "Catie",
             "Gill",
             "Kate",
-            "Sun"
-        };
-        public static string[] PeopleWhoAreWaitingInDockDestination => new[]
-        {
+            "Sun",
             "Peter",
             "Kail",
-            "Captain"
         };
+
+        public static string[] GetRandomName(int capacity)
+        {
+            return PeopleArray.OrderBy(x => rnd.Next()).Take(capacity).ToArray();
+        }
     }
 }

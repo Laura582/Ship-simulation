@@ -46,21 +46,16 @@ namespace Ship_simulation
             return _location;
         }
 
-        public void Move(Point location, string[] ArrayOfPeopleDock)
+        public void Move(Point location)
         {
-            Dock dock = new Dock(ArrayOfPeopleDock);
-            var captainName = dock.GetCaptainName();
+            
             if (_wheel == true)
             {
-                if (captainName.Contains(_captain))
-                {
+                
                     _location = location;
                     Console.WriteLine($"Ship moves to {_location} location");
-                }
-                else
-                {
-                    Console.WriteLine("In order to move you need captain");
-                }
+                
+               
             }
             else
             {
@@ -68,18 +63,11 @@ namespace Ship_simulation
             }
         }
 
-        public void LetPeopleIn(string[] ArrayOfPeopleA, string[] ArrayOfPeopleB, int capacity)
+        public void LetPeopleIn(string[] ArrayOfPeople, int capacity)
         {
-            Port port = new Port(ArrayOfPeopleA, ArrayOfPeopleB, capacity);
-
-            if (_location == Program.point1)
-            {
-                GetCurrentNumberOfPeople(port.GetNamesPortA());
-            }
-            if (_location == Program.point2)
-            {
-                GetCurrentNumberOfPeople(port.GetNamesPortB());
-            }
+            Person person = new Person(ArrayOfPeople);
+            GetCurrentNumberOfPeople(person.GetName());
+            
         }
 
         public void LetPeopleOut()

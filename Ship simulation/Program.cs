@@ -16,30 +16,30 @@ namespace Ship_simulation
         static void Main(string[] args)
         {
 
-            ShipSchedule(3, 2);
+            ShipSchedule(3, 3);
         }
         public static void ShipSchedule(int times, int capacity)
         {
             Ship ship = new Ship("Captain", capacity, true);
-            ship.Move(point1, People.PeopleWhoAreWaitingInDockDestination);
+            ship.Move(point1);
 
             for (int i = 0; i < times; i++)
             {
                 ship.LetPeopleOut();
-                ship.LetPeopleIn(People.PeopleWhoAreWaitingInADestination, People.PeopleWhoAreWaitingInBDestination, capacity);
+                ship.LetPeopleIn(People.GetRandomName(capacity), capacity);
 
                 if (ship.GetShipLocation() == point1)
                 {
-                    ship.Move(point2, People.PeopleWhoAreWaitingInDockDestination);
+                    ship.Move(point2);
                 }
                 else
                 {
-                    ship.Move(point1, People.PeopleWhoAreWaitingInDockDestination);
+                    ship.Move(point1);
                 }
             }
 
             ship.LetPeopleOut();
-            ship.Move(point3, People.PeopleWhoAreWaitingInDockDestination);
+            ship.Move(point3);
         }
 
     }
