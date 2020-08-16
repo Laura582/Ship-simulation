@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
@@ -10,7 +11,7 @@ namespace Ship_simulation
         public int _maxNumberOfPeople;
         public int _currentNumberOfPeople;
 
-        public string _location;
+        public Point _location;
         public string _captain;
 
         public List<string> peopleInside = new List<string>();
@@ -38,12 +39,12 @@ namespace Ship_simulation
             return peopleInside;
         }
 
-        public string GetShipLocation()
+        public Point GetShipLocation()
         {
             return _location;
         }
 
-        public void Move(string location)
+        public void Move(Point location)
         {
 
             if (_captain == "captain")
@@ -59,11 +60,11 @@ namespace Ship_simulation
 
         public void LetPeopleIn(string[] ArrayOfPeopleA, string[] ArrayOfPeopleB)
         {
-            if (_location == "PointA")
+            if (_location == Program.point1)
             {
                 GetCurrentNumberOfPeople(ArrayOfPeopleA);
             }
-            if (_location == "PointB")
+            if (_location == Program.point2)
             {
                 GetCurrentNumberOfPeople(ArrayOfPeopleB);
             }
