@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 
 namespace Ship_simulation
 {
-    class People
+    public class People
     {
         static Random rnd = new Random();
 
-        public static string[] PeopleArray => new[]
+        public static string[] names => new[]
         {
             "Tom",
             "Katherine",
@@ -22,9 +23,21 @@ namespace Ship_simulation
             "Kail",
         };
 
-        public static string[] GetRandomName(int capacity)
+        public static Person[] GetRandomPeople(int capacity)
         {
-            return PeopleArray.OrderBy(x => rnd.Next()).Take(capacity).ToArray();
+            var pplNames = names
+                .OrderBy(x => rnd.Next())
+                .Take(capacity);
+
+            List<Person> people = new List<Person>();
+
+            foreach (var personName in pplNames)
+            {
+                people.Add(new Person(personName));
+            }
+            return people.ToArray();
+
+
         }
     }
 }

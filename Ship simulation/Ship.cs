@@ -12,32 +12,20 @@ namespace Ship_simulation
         public int _currentNumberOfPeople;
 
         public Point _location;
-        public string _captain;
+        public Captain _captain;
         public bool _wheel;
 
-        public List<string> peopleInside = new List<string>();
-        public Ship(string captain, int maxNumberOfPeople, bool wheel)
+        public List<Person> peopleInside = new List<Person>();
+        public Ship(Captain captain, int maxNumberOfPeople, bool wheel)
         {
             _captain = captain;
             _maxNumberOfPeople = maxNumberOfPeople;
             _wheel = wheel;
         }
 
-        public List<string> GetCurrentNumberOfPeople(string[] PeopleArray)
+        public int GetPassengersCount()
         {
-            Console.WriteLine("Let people in: ");
-
-            for (int i = 0; i < PeopleArray.Length; i++)
-            {
-                if (peopleInside.Count < _maxNumberOfPeople)
-                {
-                    peopleInside.Add(PeopleArray[i]);
-                    Console.WriteLine(peopleInside[i]);
-                }
-            }
-            _currentNumberOfPeople = peopleInside.Count;
-
-            return peopleInside;
+            return peopleInside.Count;
         }
 
         public Point GetShipLocation()
@@ -59,10 +47,14 @@ namespace Ship_simulation
             }
         }
 
-        public void LetPeopleIn(string[] ArrayOfPeople)
+        public void LetPeopleIn(Person[] people)
         {
-            Person person = new Person(ArrayOfPeople);
-            GetCurrentNumberOfPeople(person.GetName());
+            peopleInside = people.ToList();
+            Console.WriteLine($"Let people in.");
+            foreach (var person in people)
+            {
+                Console.WriteLine(person.GetName());
+            }
         }
 
         public void LetPeopleOut()
@@ -70,6 +62,10 @@ namespace Ship_simulation
             peopleInside.Clear();
             _currentNumberOfPeople = 0;
             Console.WriteLine($"Let people out.");
+        }
+        public Captain GetCaptain()
+        {
+            return _captain;
         }
     }
 }

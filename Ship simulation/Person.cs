@@ -4,16 +4,16 @@ using System.Text;
 
 namespace Ship_simulation
 {
-    class Person
+    public class Person
     {
-        public string[] _name;
+        public string _name;
 
-        public Person(string[] name)
+        public Person(string name)
         {
             _name = name;
         }
         
-        public string[] GetName()
+        public string GetName()
         {
             return _name;
         }
