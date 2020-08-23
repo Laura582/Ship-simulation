@@ -35,13 +35,13 @@ namespace Ship_simulation
             return _location;
         }
 
-        public void Move(Point location, Sails sails, Wheel wheel)
+        public void Move(Point location)
         {
-            _captain.SetSailsUp(sails);
-            _captain.Turn(wheel, 180);
+            _captain.SetSailsUp(_sails);
+            _captain.Turn(_wheel, 180);
             _location = location;
             Console.WriteLine($"Ship moves to {_location} location");
-            _captain.SetSailsDown(sails);
+            _captain.SetSailsDown(_sails);
         }
 
         public void LetPeopleIn(Person[] people)

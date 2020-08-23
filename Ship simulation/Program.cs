@@ -22,7 +22,7 @@ namespace Ship_simulation
             Ship ship = new Ship(new Captain("Captain Spongebob"), capacity, new Wheel(), new Sails());
 
 
-            ship.Move(point1, new Sails(), new Wheel());
+            ship.Move(point1);
 
             for (int i = 0; i < times; i++)
             {
@@ -31,18 +31,18 @@ namespace Ship_simulation
 
                 if (ship.GetShipLocation() == point1)
                 {
-                    ship.Move(point2, new Sails(), new Wheel());
+                    ship.Move(point2);
                 }
                 else
                 {
 
-                    ship.Move(point1, new Sails(), new Wheel());
+                    ship.Move(point1);
                 }
             }
 
             ship.LetPeopleOut();
 
-            ship.Move(point3, new Sails(), new Wheel());
+            ship.Move(point3);
         }
 
     }
