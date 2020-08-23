@@ -13,14 +13,16 @@ namespace Ship_simulation
 
         public Point _location;
         public Captain _captain;
-        public bool _wheel;
+        public Sails _sails;
+        public Wheel _wheel;
 
         public List<Person> peopleInside = new List<Person>();
-        public Ship(Captain captain, int maxNumberOfPeople, bool wheel)
+        public Ship(Captain captain, int maxNumberOfPeople, Wheel wheel, Sails sails)
         {
             _captain = captain;
             _maxNumberOfPeople = maxNumberOfPeople;
             _wheel = wheel;
+            _sails = sails;
         }
 
         public int GetPassengersCount()
@@ -33,18 +35,13 @@ namespace Ship_simulation
             return _location;
         }
 
-        public void Move(Point location)
+        public void Move(Point location, Sails sails, Wheel wheel)
         {
-
-            if (_wheel == true)
-            {
-                _location = location;
-                Console.WriteLine($"Ship moves to {_location} location");
-            }
-            else
-            {
-                Console.WriteLine("In order to move you need wheel");
-            }
+            _captain.SetSailsUp(sails);
+            _captain.Turn(wheel, 180);
+            _location = location;
+            Console.WriteLine($"Ship moves to {_location} location");
+            _captain.SetSailsDown(sails);
         }
 
         public void LetPeopleIn(Person[] people)
