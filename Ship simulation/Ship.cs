@@ -8,13 +8,13 @@ namespace Ship_simulation
 {
     public class Ship
     {
-        public int _maxNumberOfPeople;
-        public int _currentNumberOfPeople;
+        private int _maxNumberOfPeople;
+        private int _currentNumberOfPeople;
 
-        public Point _location;
-        public Captain _captain;
-        public Sails _sails;
-        public Wheel _wheel;
+        private Point _location;
+        private Captain _captain;
+        private Sails _sails;
+        private Wheel _wheel;
 
         public List<Person> peopleInside = new List<Person>();
         public Ship(Captain captain, int maxNumberOfPeople, Wheel wheel, Sails sails)

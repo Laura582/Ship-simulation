@@ -15,12 +15,11 @@ namespace Ship_simulation
         static void Main(string[] args)
         {
 
-            ShipSchedule(3, 3);
+            SimulateShip(3, 3);
         }
-        public static void ShipSchedule(int times, int capacity)
+        public static void SimulateShip(int times, int capacity)
         {
             Ship ship = new Ship(new Captain("Captain Spongebob"), capacity, new Wheel(), new Sails());
-
 
             ship.Move(point1);
 
