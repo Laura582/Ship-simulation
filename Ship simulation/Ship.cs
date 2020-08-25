@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
@@ -7,111 +8,61 @@ namespace Ship_simulation
 {
     public class Ship
     {
-        public bool _locationA;
-        public bool _locationB;
-        public bool _locationC;
+        private int _maxNumberOfPeople;
+        private int _currentNumberOfPeople;
 
-        public int _maxNumberOfPeople;
-        public int _currentNumberOfPeople;
+        private Point _location;
+        private Captain _captain;
+        private Sails _sails;
+        private Wheel _wheel;
 
-        public bool _captain;
-        private bool _fuel;
-
-        public List<string> peopleInside = new List<string>();
-
-        public Ship(int maxNumberOfPeople, bool captain, bool fuel)
+        public List<Person> peopleInside = new List<Person>();
+        public Ship(Captain captain, int maxNumberOfPeople, Wheel wheel, Sails sails)
         {
             _captain = captain;
             _maxNumberOfPeople = maxNumberOfPeople;
-            _fuel = fuel;
+            _wheel = wheel;
+            _sails = sails;
         }
 
-        public List<string> GetCurrentNumberOfPeople(string[] PeopleArray)
+        public int GetPassengersCount()
         {
-            Console.WriteLine("Let people in: ");
-
-            for (int i = 0; i < PeopleArray.Length; i++)
-            {
-                if (peopleInside.Count < _maxNumberOfPeople)
-                {
-                    peopleInside.Add(PeopleArray[i]);
-                    Console.WriteLine(peopleInside[i]);
-                }
-
-            }
-
-            _currentNumberOfPeople = peopleInside.Count;
-
-            return peopleInside;
+            return peopleInside.Count;
         }
 
-        public bool GetLocationA()
+        public Point GetShipLocation()
         {
-            Console.WriteLine("Ship is in A location");
-            return _locationA;
+            return _location;
         }
-        public bool GetLocationB()
+
+        public void Move(Point location)
         {
-            Console.WriteLine("Ship is in B location");
-            return _locationB;
+            _captain.SetSailsUp(_sails);
+            _captain.Turn(_wheel, 180);
+            _location = location;
+            Console.WriteLine($"Ship moves to {_location} location");
+            _captain.SetSailsDown(_sails);
         }
-        public bool GetLocationC()
+
+        public void LetPeopleIn(Person[] people)
         {
-            Console.WriteLine("Ship is in dock");
-            return _locationC;
-        }
-        public bool GetShipLocation()
-        {
-            if (_locationA == true)
+            peopleInside = people.ToList();
+            Console.WriteLine($"Let people in.");
+            foreach (var person in people)
             {
-                return GetLocationA();
-            }
-            else if (_locationB == true)
-            {
-                return GetLocationB();
-            }
-            else
-            {
-                return GetLocationC();
-
+                Console.WriteLine(person.GetName());
             }
         }
-
-        public void Move(bool locationA, bool locationB)
-        {
-            if (_captain == true && _fuel == true)
-            {
-                _locationA = locationA;
-                _locationB = locationB;
-            }
-            else
-            {
-                Console.WriteLine("In order to move you need captain and fuel");
-                
-            }
-            
-        }
-
-
-        public void LetPeopleIn()
-        {
-            if (_locationA == true)
-            {
-                GetCurrentNumberOfPeople(People.PeoplWhoAreWaitingInADestination);
-            }
-            if (_locationB == true)
-            {
-                GetCurrentNumberOfPeople(People.PeoplWhoAreWaitingInBDestination);
-            }
-
-        }
-
 
         public void LetPeopleOut()
         {
             peopleInside.Clear();
             _currentNumberOfPeople = 0;
             Console.WriteLine($"Let people out.");
+        }
+        public Captain GetCaptain()
+        {
+            return _captain;
         }
     }
 }
